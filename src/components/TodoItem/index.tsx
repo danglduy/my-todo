@@ -1,5 +1,5 @@
 import { Props } from './types';
-import { ListItem, Text } from '@chakra-ui/react';
+import { Checkbox, ListItem, Text } from '@chakra-ui/react';
 
 const TodoItem = ({ todo, updateTodo }: Props) => {
   const handleItemClick = () => {
@@ -8,9 +8,11 @@ const TodoItem = ({ todo, updateTodo }: Props) => {
 
   return (
     <ListItem>
-      <Text as={todo.visibility ? undefined : 's'} onClick={handleItemClick}>
-        {todo._id} - {todo.content}
-      </Text>
+      <Checkbox isChecked={todo.visibility} onChange={handleItemClick}>
+        <Text as={!todo.visibility ? undefined : 's'}>
+          {todo._id} - {todo.content}
+        </Text>
+      </Checkbox>
     </ListItem>
   );
 };

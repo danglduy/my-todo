@@ -16,6 +16,16 @@ export const initialState: TodosState = [
     content: 'Todo Content',
     visibility: true,
   },
+  {
+    _id: '2',
+    content: 'New Todo Content',
+    visibility: false,
+  },
+  {
+    _id: '3',
+    content: 'Old Todo Content',
+    visibility: true,
+  },
 ];
 
 export const todosReducer: Reducer<TodosState, Action> = (
