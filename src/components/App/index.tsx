@@ -1,9 +1,15 @@
 import Todos from '../Todos';
-import { withConnect } from './withConnect';
+import { Helmet } from 'react-helmet';
 
-const App = () => {
+import { withConnect } from './withConnect';
+import { Props } from './types';
+
+const App = ({ title }: Props) => {
   return (
     <>
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
       <Todos />
     </>
   );

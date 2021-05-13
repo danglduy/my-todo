@@ -7,7 +7,7 @@ export interface AppState {
 }
 
 export const initialState = {
-  title: 'Page Title',
+  title: 'My Todo',
 };
 
 export const appReducer: Reducer<AppState, Action> = (
