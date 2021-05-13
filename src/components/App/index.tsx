@@ -11,7 +11,13 @@ const App = ({ title }: Props) => {
         <title>{title}</title>
       </Helmet>
       <ChakraProvider>
-        <Container maxW="container.lg">
+        <Container
+          backgroundColor="#F6A89E"
+          height="100vh"
+          minWidth="100vw"
+          padding="20"
+          centerContent
+        >
           <Todos />
         </Container>
       </ChakraProvider>

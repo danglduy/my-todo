@@ -1,5 +1,5 @@
 import { Props } from './types';
-import { Text } from '@chakra-ui/react';
+import { ListItem, Text } from '@chakra-ui/react';
 
 const TodoItem = ({ todo, updateTodo }: Props) => {
   const handleItemClick = () => {
@@ -7,9 +7,11 @@ const TodoItem = ({ todo, updateTodo }: Props) => {
   };
 
   return (
-    <Text as={todo.visibility ? undefined : 's'} onClick={handleItemClick}>
-      {todo._id} - {todo.content}
-    </Text>
+    <ListItem>
+      <Text as={todo.visibility ? undefined : 's'} onClick={handleItemClick}>
+        {todo._id} - {todo.content}
+      </Text>
+    </ListItem>
   );
 };
 
