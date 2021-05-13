@@ -10,14 +10,13 @@ export const setText = (text: string) => ({
   text,
 });
 
-interface Actions {
-  readonly [SET_TITLE]: ReturnType<typeof setTitle>;
-  readonly [SET_TEXT]: ReturnType<typeof setText>;
-}
+// interface Actions {
+//   readonly [SET_TITLE]: ReturnType<typeof setTitle>;
+//   readonly [SET_TEXT]: ReturnType<typeof setText>;
+// }
 
-export type AppAction = Actions[keyof Actions];
+/* export type AppAction = Actions[keyof Actions]; */
 
-// equivalent to the following
-// export type AppAction =
-//   | ReturnType<typeof setTitle>
-//   | ReturnType<typeof setText>;
+export type AppAction =
+  | ReturnType<typeof setTitle>
+  | ReturnType<typeof setText>;
