@@ -8,25 +8,31 @@ export interface Todo {
   readonly visibility: boolean;
 }
 
-export interface TodosState extends Array<Todo> {}
+export interface TodosState {
+  readonly todos: Todo[];
+  readonly newModalVisible: boolean;
+}
 
-export const initialState: TodosState = [
-  {
-    _id: '1',
-    content: 'Todo Content',
-    visibility: true,
-  },
-  {
-    _id: '2',
-    content: 'New Todo Content',
-    visibility: false,
-  },
-  {
-    _id: '3',
-    content: 'Old Todo Content',
-    visibility: true,
-  },
-];
+export const initialState: TodosState = {
+  todos: [
+    {
+      _id: '1',
+      content: 'Todo Content',
+      visibility: true,
+    },
+    {
+      _id: '2',
+      content: 'New Todo Content',
+      visibility: false,
+    },
+    {
+      _id: '3',
+      content: 'Old Todo Content',
+      visibility: true,
+    },
+  ],
+  newModalVisible: false,
+};
 
 export const todosReducer: Reducer<TodosState, Action> = (
   state = initialState,
@@ -34,9 +40,12 @@ export const todosReducer: Reducer<TodosState, Action> = (
 ) => {
   switch (action.type) {
     case UPDATE_TODO: {
-      return state.map((todo) =>
-        todo._id === action.todo._id ? { ...action.todo } : todo
-      );
+      return {
+        ...state,
+        todos: state.todos.map((todo) =>
+          todo._id === action.todo._id ? { ...action.todo } : todo
+        ),
+      };
     }
     default:
       return state;

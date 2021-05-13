@@ -1,7 +1,7 @@
-import { Todo, TodosState } from 'store/Todos/reducer';
+import { Todo } from 'store/Todos/reducer';
 
 export interface StateProps {
-  readonly todos: TodosState;
+  readonly todos: Todo[];
 }
 
 export interface DispatchProps {
