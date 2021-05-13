@@ -6,7 +6,7 @@ const Todos = ({ todos, updateTodo }: Props) => {
   return (
     <>
       {todos.map((todo) => (
-        <TodoItem todo={todo} updateTodo={updateTodo} />
+        <TodoItem key={todo._id} todo={todo} updateTodo={updateTodo} />
       ))}
     </>
   );
