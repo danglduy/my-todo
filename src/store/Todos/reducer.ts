@@ -16,17 +16,17 @@ export interface TodosState {
 export const initialState: TodosState = {
   todos: [
     {
-      _id: '1',
+      _id: uuidv4(),
       content: 'Todo Content',
       visibility: true,
     },
     {
-      _id: '2',
+      _id: uuidv4(),
       content: 'New Todo Content',
       visibility: false,
     },
     {
-      _id: '3',
+      _id: uuidv4(),
       content: 'Old Todo Content',
       visibility: true,
     },

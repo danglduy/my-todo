@@ -3,8 +3,12 @@ import { Props } from './types';
 import { withConnect } from './withConnect';
 import TodoItem from '../TodoItem';
 import { Button } from '@chakra-ui/button';
+import NewTodoModal from '../NewTodoModal';
+import { useDisclosure } from '@chakra-ui/hooks';
 
 const Todos = ({ todos, updateTodo, addTodo }: Props) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Box
       width="700px"
@@ -19,7 +23,8 @@ const Todos = ({ todos, updateTodo, addTodo }: Props) => {
         <Flex>
           <Heading>Things to do</Heading>
           <Spacer />
-          <Button>Add todos</Button>
+          <Button onClick={onOpen}>Add todos</Button>
+          <NewTodoModal addTodo={addTodo} isOpen={isOpen} onClose={onClose} />
         </Flex>
       </Box>
       <List spacing="3">

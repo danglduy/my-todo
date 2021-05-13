@@ -9,9 +9,7 @@ const TodoItem = ({ todo, updateTodo }: Props) => {
   return (
     <ListItem>
       <Checkbox isChecked={todo.visibility} onChange={handleItemClick}>
-        <Text as={!todo.visibility ? undefined : 's'}>
-          {todo._id} - {todo.content}
-        </Text>
+        <Text as={!todo.visibility ? undefined : 's'}>{todo.content}</Text>
       </Checkbox>
     </ListItem>
   );
