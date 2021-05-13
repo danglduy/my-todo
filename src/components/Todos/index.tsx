@@ -1,7 +1,8 @@
-import { Box, Heading, List } from '@chakra-ui/layout';
+import { Box, Flex, Heading, List, Spacer } from '@chakra-ui/layout';
 import { Props } from './types';
 import { withConnect } from './withConnect';
 import TodoItem from '../TodoItem';
+import { Button } from '@chakra-ui/button';
 
 const Todos = ({ todos, updateTodo }: Props) => {
   return (
@@ -15,7 +16,11 @@ const Todos = ({ todos, updateTodo }: Props) => {
       background=" #F9F3E5"
     >
       <Box height="81px">
-        <Heading>Things to do</Heading>
+        <Flex>
+          <Heading>Things to do</Heading>
+          <Spacer />
+          <Button>Add todos</Button>
+        </Flex>
       </Box>
       <List spacing="3">
         {todos.map((todo) => (
