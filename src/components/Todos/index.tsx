@@ -17,7 +17,7 @@ const Todos = ({ todos, updateTodo }: Props) => {
       <Box height="81px">
         <Heading>Things to do</Heading>
       </Box>
-      <List>
+      <List spacing="3">
         {todos.map((todo) => (
           <TodoItem key={todo._id} todo={todo} updateTodo={updateTodo} />
         ))}
