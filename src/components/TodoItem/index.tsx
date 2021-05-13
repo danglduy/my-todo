@@ -1,12 +1,15 @@
 import { Props } from './types';
+import { Text } from '@chakra-ui/react';
 
 const TodoItem = ({ todo, updateTodo }: Props) => {
+  const handleItemClick = () => {
+    updateTodo({ ...todo, visibility: !todo.visibility });
+  };
+
   return (
-    <>
-      <span>
-        {todo._id} - {todo.content}
-      </span>
-    </>
+    <Text as={todo.visibility ? undefined : 's'} onClick={handleItemClick}>
+      {todo._id} - {todo.content}
+    </Text>
   );
 };
 
