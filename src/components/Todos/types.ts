@@ -6,6 +6,7 @@ export interface StateProps {
 
 export interface DispatchProps {
   readonly updateTodo: (todo: Todo) => void;
+  readonly addTodo: (content: string, visibility: boolean) => void;
 }
 
 export interface OwnProps {}

@@ -4,7 +4,7 @@ import { withConnect } from './withConnect';
 import TodoItem from '../TodoItem';
 import { Button } from '@chakra-ui/button';
 
-const Todos = ({ todos, updateTodo }: Props) => {
+const Todos = ({ todos, updateTodo, addTodo }: Props) => {
   return (
     <Box
       width="700px"

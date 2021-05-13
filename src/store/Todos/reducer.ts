@@ -1,6 +1,7 @@
 import { Reducer } from 'redux';
 import { Action } from 'store/types';
-import { UPDATE_TODO } from './actionTypes';
+import { v4 as uuidv4 } from 'uuid';
+import { ADD_TODO, UPDATE_TODO } from './actionTypes';
 
 export interface Todo {
   readonly _id: string;
@@ -10,7 +11,6 @@ export interface Todo {
 
 export interface TodosState {
   readonly todos: Todo[];
-  readonly newModalVisible: boolean;
 }
 
 export const initialState: TodosState = {
@@ -31,7 +31,6 @@ export const initialState: TodosState = {
       visibility: true,
     },
   ],
-  newModalVisible: false,
 };
 
 export const todosReducer: Reducer<TodosState, Action> = (
@@ -45,6 +44,19 @@ export const todosReducer: Reducer<TodosState, Action> = (
         todos: state.todos.map((todo) =>
           todo._id === action.todo._id ? { ...action.todo } : todo
         ),
+      };
+    }
+    case ADD_TODO: {
+      return {
+        ...state,
+        todos: [
+          ...state.todos,
+          {
+            _id: uuidv4(),
+            content: action.payload.content,
+            visibility: action.payload.visibility,
+          },
+        ],
       };
     }
     default:
