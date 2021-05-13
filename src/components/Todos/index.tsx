@@ -6,7 +6,7 @@ import { Button } from '@chakra-ui/button';
 import NewTodoModal from '../NewTodoModal';
 import { useDisclosure } from '@chakra-ui/hooks';
 
-const Todos = ({ todos, updateTodo, addTodo }: Props) => {
+const Todos = ({ todos, updateTodo, addTodo, removeTodo }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -29,7 +29,12 @@ const Todos = ({ todos, updateTodo, addTodo }: Props) => {
       </Box>
       <List spacing="3">
         {todos.map((todo) => (
-          <TodoItem key={todo._id} todo={todo} updateTodo={updateTodo} />
+          <TodoItem
+            key={todo._id}
+            todo={todo}
+            updateTodo={updateTodo}
+            removeTodo={removeTodo}
+          />
         ))}
       </List>
     </Box>

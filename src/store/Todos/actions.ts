@@ -1,4 +1,4 @@
-import { UPDATE_TODO, ADD_TODO } from './actionTypes';
+import { UPDATE_TODO, ADD_TODO, REMOVE_TODO } from './actionTypes';
 import { Todo } from './reducer';
 
 export const updateTodo = (todo: Todo) => ({
@@ -14,6 +14,12 @@ export const addTodo = (content: string, visibility: boolean) => ({
   },
 });
 
+export const removeTodo = (_id: string) => ({
+  type: REMOVE_TODO,
+  _id,
+});
+
 export type TodosAction =
   | ReturnType<typeof updateTodo>
-  | ReturnType<typeof addTodo>;
+  | ReturnType<typeof addTodo>
+  | ReturnType<typeof removeTodo>;

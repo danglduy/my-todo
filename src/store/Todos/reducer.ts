@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 import { Action } from 'store/types';
 import { v4 as uuidv4 } from 'uuid';
-import { ADD_TODO, UPDATE_TODO } from './actionTypes';
+import { ADD_TODO, REMOVE_TODO, UPDATE_TODO } from './actionTypes';
 
 export interface Todo {
   readonly _id: string;
@@ -57,6 +57,12 @@ export const todosReducer: Reducer<TodosState, Action> = (
             visibility: action.payload.visibility,
           },
         ],
+      };
+    }
+    case REMOVE_TODO: {
+      return {
+        ...state,
+        todos: state.todos.filter((todo) => todo._id !== action._id),
       };
     }
     default:
