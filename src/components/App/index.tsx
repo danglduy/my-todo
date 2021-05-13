@@ -1,6 +1,6 @@
 import Todos from '../Todos';
 import { Helmet } from 'react-helmet';
-
+import { ChakraProvider } from '@chakra-ui/react';
 import { withConnect } from './withConnect';
 import { Props } from './types';
 
@@ -10,7 +10,9 @@ const App = ({ title }: Props) => {
       <Helmet>
         <title>{title}</title>
       </Helmet>
-      <Todos />
+      <ChakraProvider>
+        <Todos />
+      </ChakraProvider>
     </>
   );
 };
