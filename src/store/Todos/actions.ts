@@ -1,4 +1,9 @@
-import { UPDATE_TODO, ADD_TODO, REMOVE_TODO } from './actionTypes';
+import {
+  UPDATE_TODO,
+  ADD_TODO,
+  REMOVE_TODO,
+  REORDER_TODOS,
+} from './actionTypes';
 import { Todo } from './reducer';
 
 export const updateTodo = (todo: Todo) => ({
@@ -19,7 +24,19 @@ export const removeTodo = (_id: string) => ({
   _id,
 });
 
+export const reorderTodos = (
+  sourceIndex: number,
+  destinationIndex: number
+) => ({
+  type: REORDER_TODOS,
+  payload: {
+    sourceIndex,
+    destinationIndex,
+  },
+});
+
 export type TodosAction =
   | ReturnType<typeof updateTodo>
   | ReturnType<typeof addTodo>
-  | ReturnType<typeof removeTodo>;
+  | ReturnType<typeof removeTodo>
+  | ReturnType<typeof reorderTodos>;

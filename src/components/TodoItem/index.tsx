@@ -1,5 +1,5 @@
 import { Props } from './types';
-import { Checkbox, ListItem, Text, Tooltip } from '@chakra-ui/react';
+import { Checkbox, Text, Tooltip } from '@chakra-ui/react';
 import { SmallCloseIcon } from '@chakra-ui/icons';
 
 const TodoItem = ({ todo, updateTodo, removeTodo }: Props) => {
@@ -12,7 +12,7 @@ const TodoItem = ({ todo, updateTodo, removeTodo }: Props) => {
   };
 
   return (
-    <ListItem>
+    <>
       <Checkbox isChecked={todo.visibility} onChange={handleItemClick}>
         <Text as={!todo.visibility ? undefined : 's'}>{todo.content}</Text>
       </Checkbox>
@@ -24,7 +24,7 @@ const TodoItem = ({ todo, updateTodo, removeTodo }: Props) => {
           cursor="pointer"
         />
       </Tooltip>
-    </ListItem>
+    </>
   );
 };
 

@@ -1,13 +1,35 @@
-import { Box, Flex, Heading, List, Spacer } from '@chakra-ui/layout';
+import { Box, Flex, Heading, List, ListItem, Spacer } from '@chakra-ui/layout';
 import { Props } from './types';
 import { withConnect } from './withConnect';
 import TodoItem from '../TodoItem';
 import { Button } from '@chakra-ui/button';
 import NewTodoModal from '../NewTodoModal';
 import { useDisclosure } from '@chakra-ui/hooks';
+import {
+  DragDropContext,
+  Draggable,
+  Droppable,
+  DropResult,
+} from 'react-beautiful-dnd';
 
-const Todos = ({ todos, updateTodo, addTodo, removeTodo }: Props) => {
+const Todos = ({
+  todos,
+  updateTodo,
+  addTodo,
+  removeTodo,
+  reorderTodos,
+}: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const onDragEnd = (result: DropResult) => {
+    const { source, destination } = result;
+
+    if (!destination) {
+      return;
+    }
+
+    reorderTodos(source.index, destination.index);
+  };
 
   return (
     <Box
@@ -27,16 +49,37 @@ const Todos = ({ todos, updateTodo, addTodo, removeTodo }: Props) => {
           <NewTodoModal addTodo={addTodo} isOpen={isOpen} onClose={onClose} />
         </Flex>
       </Box>
-      <List spacing="3">
-        {todos.map((todo) => (
-          <TodoItem
-            key={todo._id}
-            todo={todo}
-            updateTodo={updateTodo}
-            removeTodo={removeTodo}
-          />
-        ))}
-      </List>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="droppable">
+          {(provided, snapshot) => (
+            <List
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+              spacing="3"
+            >
+              {todos.map((todo, index) => (
+                <Draggable key={todo._id} draggableId={todo._id} index={index}>
+                  {(provided, snapshot) => (
+                    <ListItem
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                    >
+                      <TodoItem
+                        key={todo._id}
+                        todo={todo}
+                        updateTodo={updateTodo}
+                        removeTodo={removeTodo}
+                      />
+                    </ListItem>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </List>
+          )}
+        </Droppable>
+      </DragDropContext>
     </Box>
   );
 };
