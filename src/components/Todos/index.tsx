@@ -10,6 +10,8 @@ import {
   Draggable,
   Droppable,
   DropResult,
+  DraggingStyle,
+  NotDraggingStyle,
 } from 'react-beautiful-dnd';
 
 const Todos = ({
@@ -30,6 +32,16 @@ const Todos = ({
 
     reorderTodos(source.index, destination.index);
   };
+
+  const getItemStyle = (
+    _isDragging: boolean,
+    draggableStyle: DraggingStyle | NotDraggingStyle | undefined
+  ): object => ({
+    margin: '0.75rem 0 0', // TODO: Get current ListItem margin to apply on this property
+
+    // styles we need to apply on draggables
+    ...draggableStyle,
+  });
 
   return (
     <Box
@@ -64,6 +76,10 @@ const Todos = ({
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
+                      style={getItemStyle(
+                        snapshot.isDragging,
+                        provided.draggableProps.style
+                      )}
                     >
                       <TodoItem
                         key={todo._id}
